@@ -1,20 +1,22 @@
 function botToggleUp() {
-    messages = document.querySelectorAll('.message');
-    document.querySelector('.wrapWrapper').classList.add('botActive');
-    document.querySelector('.mainButton').classList.add('buttonUp');
-    document.querySelector('.mainButton').classList.remove('toucanAnime');
-    document.querySelector('.background').classList.add('ing');
-    setTimeout(backUp, 200);
-    if (messages.length >= 1){
-        setTimeout(deleteUp, 400);
-    };
+messages = document.querySelectorAll('.message');
+document.querySelector('.wrapWrapper').classList.add('botActive');
+document.querySelector('.mainButton').classList.add('buttonUp');
+document.querySelector('.mainButton').classList.remove('toucanAnime');
+document.querySelector('.background').classList.add('ing');
+document.querySelector('body').classList.add('noneScroll');
+setTimeout(backUp, 200);
+if (messages.length >= 1){
+setTimeout(deleteUp, 400);
+};
 };
 function botToggleDown() {
-    document.querySelector('.wrapWrapper').classList.remove('botActive');
-    document.querySelector('.mainButton').classList.remove('buttonUp');
-    document.querySelector('.background').classList.remove('ing');
-    backDown();
-    deleteDown();
+document.querySelector('.wrapWrapper').classList.remove('botActive');
+document.querySelector('.mainButton').classList.remove('buttonUp');
+document.querySelector('.background').classList.remove('ing');
+document.querySelector('body').classList.remove('noneScroll');
+backDown();
+deleteDown();
 };
 function buttonClose() {
     document.querySelector('.mainButton').classList.add('buttonClose');
