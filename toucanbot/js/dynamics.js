@@ -1,16 +1,12 @@
 function botToggleUp() {
     messages = document.querySelectorAll('.message');
+    document.querySelector('.wrapWrapper').classList.add('botActive');
+    document.querySelector('.mainButton').classList.add('buttonUp');
+    document.querySelector('.mainButton').classList.remove('toucanAnime');
+    document.querySelector('.background').classList.add('ing');
+    setTimeout(backUp, 200);
     if (messages.length >= 1){
-        document.querySelector('.wrapWrapper').classList.add('botActive');
-        document.querySelector('.mainButton').classList.add('buttonUp');
-        document.querySelector('.background').classList.add('ing');
-        setTimeout(backUp, 200);
         setTimeout(deleteUp, 400);
-    } else {
-        document.querySelector('.wrapWrapper').classList.add('botActive');
-        document.querySelector('.mainButton').classList.add('buttonUp');
-        document.querySelector('.background').classList.add('ing');
-        setTimeout(backUp, 200);
     };
 };
 function botToggleDown() {
@@ -55,7 +51,7 @@ function key13(event) {
 
 
 
-function deleteAll(){
+function deleteAll() {
     messages = document.querySelectorAll('.message');
     messages.forEach(function(item){
         item.parentNode.removeChild(item);
@@ -63,10 +59,10 @@ function deleteAll(){
     document.querySelector('.deleteAlert').classList.remove('aAlert');
     setTimeout(deleteDown, 200);
 };
-function alertDeleteUp(){
+function alertDeleteUp() {
     document.querySelector('.deleteAlert').classList.add('aAlert');
 };
-function alertDeleteDown(){
+function alertDeleteDown() {
     document.querySelector('.deleteAlert').classList.remove('aAlert');
 };
 
@@ -86,6 +82,7 @@ function sendMessage() {
         messWrap.appendChild(messageP);
         field.scrollTop = field.scrollHeight;
         document.querySelector('.botSender').value = '';
+        document.querySelector('.botSender').focus();
         setTimeout(deleteUp, 200);
         dir1 = ['привет', 'здра', 'здар', 'здор', 'хай', 'хаи'];
         dir2 = ['задниц', 'хрен', 'жоп', 'дау', 'дебил', 'соси', 'пету'];
@@ -100,7 +97,7 @@ function sendMessage() {
                 botMessWrap = document.createElement('div');
                 botMessageP = document.createElement('p');
                 botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Тук-тук, рад вас видеть! Чем могу Вам помочь?';
+                botMessageP.innerHTML = 'Привет! Чем могу вам помочь?';
                 field.appendChild(botMessage);
                 botMessage.appendChild(botMessWrap);
                 botMessWrap.appendChild(botMessageP);
@@ -121,20 +118,6 @@ function sendMessage() {
                 field.scrollTop = field.scrollHeight;
             };
         };
-        for (item of dir6) {
-            lowerValue = messageValue.toLowerCase();
-            if (lowerValue.includes(item)) {    
-                botMessage = document.createElement('div');
-                botMessWrap = document.createElement('div');
-                botMessageP = document.createElement('p');
-                botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Замечательно! Рад, что вы спросили.';
-                field.appendChild(botMessage);
-                botMessage.appendChild(botMessWrap);
-                botMessWrap.appendChild(botMessageP);
-                field.scrollTop = field.scrollHeight;
-            };
-        };
         for (item of dir4) {
             lowerValue = messageValue.toLowerCase();
             if (lowerValue.includes(item)) {    
@@ -142,7 +125,7 @@ function sendMessage() {
                 botMessWrap = document.createElement('div');
                 botMessageP = document.createElement('p');
                 botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Я Ваш индивидуальный помощник Туканчик. Спросите меня, что вас интересует!';
+                botMessageP.innerHTML = 'Я ваш индивидуальный помощник Туканчик. Спросите меня, что вас интересует!';
                 field.appendChild(botMessage);
                 botMessage.appendChild(botMessWrap);
                 botMessWrap.appendChild(botMessageP);
@@ -162,6 +145,20 @@ function sendMessage() {
                 botMessWrap.appendChild(botMessageP);
                 field.scrollTop = field.scrollHeight;
                 setTimeout(botToggleDown, 3000);
+            };
+        };
+        for (item of dir6) {
+            lowerValue = messageValue.toLowerCase();
+            if (lowerValue.includes(item)) {    
+                botMessage = document.createElement('div');
+                botMessWrap = document.createElement('div');
+                botMessageP = document.createElement('p');
+                botMessage.className = 'reply message';
+                botMessageP.innerHTML = 'Замечательно! Рад, что вы спросили.';
+                field.appendChild(botMessage);
+                botMessage.appendChild(botMessWrap);
+                botMessWrap.appendChild(botMessageP);
+                field.scrollTop = field.scrollHeight;
             };
         };
         for (item of dir2) {
