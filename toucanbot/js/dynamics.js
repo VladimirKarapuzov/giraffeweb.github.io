@@ -103,11 +103,13 @@ function sendMessage() {
         document.querySelector('.botSender').value = '';
         document.querySelector('.botSender').focus();
         setTimeout(deleteUp, 200);
-        dir1 = ['привет', 'здра', 'здар', 'здор'];
-        dir2 = ['задниц', 'хрен', 'жоп', 'дау', 'дебил', 'соси'];
-        dir3 = ['заказ', 'куп', 'приобре', 'устано', 'работ'];
-        dir4 = ['кто ты', 'кто вы', 'ты кто', 'вы кто', 'команд', 'список', 'помо'];
-        dir5 = ['свидан', 'пока', 'до скорого', 'пасиб', 'прощай', 'встреч'];
+        dir1 = ['привет', 'здра', 'здар', 'здор', 'hi', 'hello', 'hallo', 'хай'];
+        dir2 = ['задниц', 'хрен', 'жоп', 'дау', 'дебил', 'соси', 'ху', 'чле', 'дур'];
+        dir3 = ['заказ', 'куп', 'приобре', 'устано', 'работ', 'беспл'];
+        dir4 = ['кто ты', 'кто вы', 'ты кто', 'вы кто', 'команд', 'список', 'помо', 'заним', 'что это'];
+        dir5 = ['свидан', 'пока', 'до скорого', 'пасиб', 'прощай', 'встреч', 'благодар'];
+        dir6 = ['дела', 'жизнь'];
+        dir7 = ['связь', 'обратная связь', 'отзыв', 'связаться', 'номер телефона'];
         for (item of dir1) {
             lowerValue = messageValue.toLowerCase();
             if (lowerValue.includes(item)) {    
@@ -129,7 +131,7 @@ function sendMessage() {
                 botMessWrap = document.createElement('div');
                 botMessageP = document.createElement('p');
                 botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Вы можете сделать заказ, возпользуясь формой ниже или написав нам на почту dmitriyhernov1@yandex.ru';
+                botMessageP.innerHTML = 'Установка toucan.bot бесплатна, Вы можете заказать установку, возпользуясь формой ниже или написав нам на почту dmitriyhernov1@yandex.ru';
                 field.appendChild(botMessage);
                 botMessage.appendChild(botMessWrap);
                 botMessWrap.appendChild(botMessageP);
@@ -143,7 +145,7 @@ function sendMessage() {
                 botMessWrap = document.createElement('div');
                 botMessageP = document.createElement('p');
                 botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Я ваш индивидуальный помощник Туканчик. Спросите меня, что вас интересует!';
+                botMessageP.innerHTML = 'Я ваш индивидуальный помощник Туканчик по данному сайту. Спросите меня, что вас конкректно интересует?';
                 field.appendChild(botMessage);
                 botMessage.appendChild(botMessWrap);
                 botMessWrap.appendChild(botMessageP);
@@ -165,6 +167,19 @@ function sendMessage() {
                 setTimeout(botToggleDown, 3000);
             };
         };
+        for (item of dir6) {
+            lowerValue = messageValue.toLowerCase();
+            if (lowerValue.includes(item)) {    
+                botMessage = document.createElement('div');
+                botMessWrap = document.createElement('div');
+                botMessageP = document.createElement('p');
+                botMessage.className = 'reply message';
+                botMessageP.innerHTML = 'Отлично, рад, что спросили!';
+                field.appendChild(botMessage);
+                botMessage.appendChild(botMessWrap);
+                botMessWrap.appendChild(botMessageP);
+            };
+        };
         for (item of dir2) {
             lowerValue = messageValue.toLowerCase();
             if (lowerValue.includes(item)) {    
@@ -179,6 +194,20 @@ function sendMessage() {
                 field.scrollTop = field.scrollHeight;
                 setTimeout(botToggleDown, 3000);
                 setTimeout(buttonClose, 3500);
+            };
+        };
+        for (item of dir7) {
+            lowerValue = messageValue.toLowerCase();
+            if (lowerValue.includes(item)) {    
+                botMessage = document.createElement('div');
+                botMessWrap = document.createElement('div');
+                botMessageP = document.createElement('p');
+                botMessage.className = 'reply message';
+                botMessageP.innerHTML = 'Наши контакты доступны возле формы "обратной связи", будем рады вашему отклику.';
+                field.appendChild(botMessage);
+                botMessage.appendChild(botMessWrap);
+                botMessWrap.appendChild(botMessageP);
+                field.scrollTop = field.scrollHeight;
             };
         };
         sends = document.querySelectorAll('.message');
