@@ -103,6 +103,8 @@ function sendMessage() {
         document.querySelector('.botSender').value = '';
         document.querySelector('.botSender').focus();
         setTimeout(deleteUp, 200);
+        document.cookie = 'message=' + encodeURIComponent(messageValue);
+        console.log(document.cookie);
         dir1 = ['привет', 'здра', 'здар', 'здор', 'hi', 'hello', 'hallo', 'хай', 'хаи'];
         dir2 = ['задниц', 'хрен', 'жоп', 'дау', 'дебил', 'соси', 'ху', 'чле', 'дур'];
         dir3 = ['заказ', 'куп', 'приобре', 'устано', 'работ', 'беспл'];
