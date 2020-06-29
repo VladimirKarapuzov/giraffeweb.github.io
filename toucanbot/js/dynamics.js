@@ -3,6 +3,35 @@ window.onload = function () {
     window.addEventListener("orientationchange", function () {
         hideAddressBar();
     }, false);
+
+    setCookie('message0', 'Тук-тук, рад вас видеть!', 30);
+    setCookie('message0kind', 'reply', 30);
+
+    for (i = 0; i < 1000; i++) {
+        tag1 = 'message' + i;
+        tag2 = 'message' + i + 'kind';
+        mess = getCookie(tag1);
+        kind = getCookie(tag2);
+        if (mess != '') {
+            messageValue = mess;
+            field = document.querySelector('.field');
+            message = document.createElement('div');
+            messWrap = document.createElement('div');
+            messageP = document.createElement('p');
+            if (kind == 'send') {
+                message.className = 'send message';
+            } 
+            if (kind == 'reply') {
+                message.className = 'reply message';
+            };
+            messageP.innerHTML = messageValue;
+            field.appendChild(message);
+            message.appendChild(messWrap);
+            messWrap.appendChild(messageP);
+        };
+    };
+
+    console.log(document.cookie);
 }
 
 function hideAddressBar() {
@@ -76,6 +105,7 @@ function deleteAll() {
         item.parentNode.removeChild(item);
     });
     document.querySelector('.deleteAlert').classList.remove('aAlert');
+    deleteCookie();
     setTimeout(deleteDown, 200);
 };
 function alertDeleteUp() {
@@ -99,122 +129,53 @@ function sendMessage() {
         field.appendChild(message);
         message.appendChild(messWrap);
         messWrap.appendChild(messageP);
+        isMessages = document.querySelectorAll('.message');
+        messagePosition = isMessages.length - 1;
+        cookieName1 = 'message' + messagePosition;
+        cookieName2 = 'message' + messagePosition + 'kind';
+
+        setCookie(cookieName1, messageValue, 30);
+        setCookie(cookieName2, 'send', 30);
+
         field.scrollTop = field.scrollHeight;
         document.querySelector('.botSender').value = '';
         document.querySelector('.botSender').focus();
         setTimeout(deleteUp, 200);
-        document.cookie = 'message=' + encodeURIComponent(messageValue);
-        console.log(document.cookie);
         dir1 = ['привет', 'здра', 'здар', 'здор', 'hi', 'hello', 'hallo', 'хай', 'хаи'];
         dir2 = ['задниц', 'хрен', 'жоп', 'дау', 'дебил', 'соси', 'ху', 'чле', 'дур'];
         dir3 = ['заказ', 'куп', 'приобре', 'устано', 'работ', 'беспл'];
-        dir4 = ['кто ты', 'кто вы', 'ты кто', 'вы кто', 'команд', 'список', 'помо', 'заним', 'что это', 'что делаешь'];
+        dir4 = ['кто ты', 'кто вы', 'ты кто', 'вы кто', 'команд', 'список', 'помо', 'заним', 'что это'];
         dir5 = ['свидан', 'пока', 'до скорого', 'пасиб', 'прощай', 'встреч', 'благодар'];
-        dir6 = ['как дела', 'жизнь'];
+        dir6 = ['дела', 'жизнь'];
         dir7 = ['связь', 'обратная связь', 'отзыв', 'связаться', 'номер телефона'];
+        ifFirstMessage = false;
         for (item of dir1) {
-            lowerValue = messageValue.toLowerCase();
-            if (lowerValue.includes(item)) {    
-                botMessage = document.createElement('div');
-                botMessWrap = document.createElement('div');
-                botMessageP = document.createElement('p');
-                botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Привет! Чем могу вам помочь?';
-                field.appendChild(botMessage);
-                botMessage.appendChild(botMessWrap);
-                botMessWrap.appendChild(botMessageP);
-                field.scrollTop = field.scrollHeight;
-            };
-        };
-        for (item of dir3) {
-            lowerValue = messageValue.toLowerCase();
-            if (lowerValue.includes(item)) {    
-                botMessage = document.createElement('div');
-                botMessWrap = document.createElement('div');
-                botMessageP = document.createElement('p');
-                botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Установка toucan.bot бесплатна, Вы можете заказать установку, возпользуясь формой ниже или написав нам на почту dmitriyhernov1@yandex.ru';
-                field.appendChild(botMessage);
-                botMessage.appendChild(botMessWrap);
-                botMessWrap.appendChild(botMessageP);
-                field.scrollTop = field.scrollHeight;
-            };
-        };
-        for (item of dir4) {
-            lowerValue = messageValue.toLowerCase();
-            if (lowerValue.includes(item)) {    
-                botMessage = document.createElement('div');
-                botMessWrap = document.createElement('div');
-                botMessageP = document.createElement('p');
-                botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Я ваш индивидуальный помощник Туканчик по данному сайту. Спросите меня, что вас конкректно интересует?';
-                field.appendChild(botMessage);
-                botMessage.appendChild(botMessWrap);
-                botMessWrap.appendChild(botMessageP);
-                field.scrollTop = field.scrollHeight;
-            };
-        };
-        for (item of dir5) {
-            lowerValue = messageValue.toLowerCase();
-            if (lowerValue.includes(item)) {    
-                botMessage = document.createElement('div');
-                botMessWrap = document.createElement('div');
-                botMessageP = document.createElement('p');
-                botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Рад помочь!';
-                field.appendChild(botMessage);
-                botMessage.appendChild(botMessWrap);
-                botMessWrap.appendChild(botMessageP);
-                field.scrollTop = field.scrollHeight;
-                setTimeout(botToggleDown, 3000);
-            };
-        };
-        for (item of dir6) {
-            lowerValue = messageValue.toLowerCase();
-            if (lowerValue.includes(item)) {    
-                botMessage = document.createElement('div');
-                botMessWrap = document.createElement('div');
-                botMessageP = document.createElement('p');
-                botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Отлично, рад, что спросили!';
-                field.appendChild(botMessage);
-                botMessage.appendChild(botMessWrap);
-                botMessWrap.appendChild(botMessageP);
-            };
+            reply = 'Привет! Чем могу вам помочь?';
+            replyMessage(reply);
         };
         for (item of dir2) {
-            lowerValue = messageValue.toLowerCase();
-            if (lowerValue.includes(item)) {    
-                botMessage = document.createElement('div');
-                botMessWrap = document.createElement('div');
-                botMessageP = document.createElement('p');
-                botMessage.className = 'reply message';
-                botMessageP.innerHTML = 'Вы очень некультурный человек! Я не хочу с вами разговаривать! Тук-тук';
-                field.appendChild(botMessage);
-                botMessage.appendChild(botMessWrap);
-                botMessWrap.appendChild(botMessageP);
-                field.scrollTop = field.scrollHeight;
-                setTimeout(botToggleDown, 3000);
-                setTimeout(buttonClose, 3500);
-            };
+            reply = 'Вы очень некультурный человек! Я не хочу с вами разговаривать! Тук-тук';
+            replyMessage(reply);
         };
-        ifFirst7Message = false;
+        for (item of dir3) {
+            reply = 'Установка toucan.bot бесплатна, Вы можете заказать установку, возпользуясь формой ниже или написав нам на почту dmitriyhernov1@yandex.ru';
+            replyMessage(reply);
+        };
+        for (item of dir4) {
+            reply = 'Я ваш индивидуальный помощник Туканчик по данному сайту. Спросите меня, что вас конкректно интересует?';
+            replyMessage(reply);
+        };
+        for (item of dir5) {
+            reply = 'Рад помочь!';
+            replyMessage(reply);
+        };
+        for (item of dir6) {
+            reply = 'Отлично, рад, что спросили!';
+            replyMessage(reply)
+        };
         for (item of dir7) {
-            if (ifFirst7Message == false) {
-                lowerValue = messageValue.toLowerCase();
-                if (lowerValue.includes(item)) {    
-                    botMessage = document.createElement('div');
-                    botMessWrap = document.createElement('div');
-                    botMessageP = document.createElement('p');
-                    botMessage.className = 'reply message';
-                    botMessageP.innerHTML = 'Наши контакты доступны возле формы "обратной связи", будем рады вашему отклику.';
-                    field.appendChild(botMessage);
-                    botMessage.appendChild(botMessWrap);
-                    botMessWrap.appendChild(botMessageP);
-                    field.scrollTop = field.scrollHeight;
-                    ifFirst7Message = true;
-                };
-            };
+            reply = 'Наши контакты доступны возле формы "обратной связи", будем рады вашему отклику.';
+            replyMessage(reply);
         };
         sends = document.querySelectorAll('.message');
         lastSend = sends[sends.length - 1];
@@ -229,6 +190,44 @@ function sendMessage() {
             botMessage.appendChild(botMessWrap);
             botMessWrap.appendChild(botMessageP);
             field.scrollTop = field.scrollHeight;
+
+            isMessagess = document.querySelectorAll('.message');
+            messagePosition = isMessagess.length - 1;
+            cookieName1 = 'message' + messagePosition;
+            cookieName2 = 'message' + messagePosition + 'kind';
+
+            setCookie(cookieName1, 'Извините, я вас не понимаю!', 30);
+            setCookie(cookieName2, 'reply', 30);
         };
     };
 };
+
+
+
+// Reply
+
+function replyMessage(direct) {
+    if (ifFirstMessage == false) {
+        lowerValue = messageValue.toLowerCase();
+        if (lowerValue.includes(item)) {    
+            botMessage = document.createElement('div');
+            botMessWrap = document.createElement('div');
+            botMessageP = document.createElement('p');
+            botMessage.className = 'reply message';
+            botMessageP.innerHTML = direct;
+            field.appendChild(botMessage);
+            botMessage.appendChild(botMessWrap);
+            botMessWrap.appendChild(botMessageP);
+            field.scrollTop = field.scrollHeight;
+
+            isMessagess = document.querySelectorAll('.message');
+            messagePosition = isMessagess.length - 1;
+            cookieName1 = 'message' + messagePosition;
+            cookieName2 = 'message' + messagePosition + 'kind';
+
+            setCookie(cookieName1, direct, 30);
+            setCookie(cookieName2, 'reply', 30);
+        };
+    };
+    
+};        
