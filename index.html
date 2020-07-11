@@ -106,7 +106,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
-
+    <!-- styles CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
@@ -970,7 +971,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </footer>
     <!--::Footer::-->
+  <!-- Myself ToucanBot -->
 
+
+<div class="background"></div>
+<div class="mainButton toucanAnime" onclick="botToggleUp()">
+    <div class="popupName">
+        <p>Привет! Я твой личный проводник по этому сайту <a href="https://giraffeweb.ru/toucanbot/" target="yes">Туканчик</a>. Спроси меня о чем захочешь!</p>
+    </div>
+    <img src="img/toucan_bot_img/chat.png">
+</div>
+<div class="deleteAlert">
+    <div>
+        <div class="youAre">
+            <div>Вы действительно хотите очистить ваш диалог с Туканчиком?</div>
+        </div>
+        <div class="confirmDeleteWrap">
+            <div class="confirmDelete">
+                <div class="cancelDelete" onclick="alertDeleteDown()">Назад</div>
+                <div class="yesDelete" onclick="deleteAll()">Очистить</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapWrapper">
+    <div class="back" onclick="botToggleDown()"><img src="img/toucan_bot_img/cancel.svg"></div>
+    <div class="delete" onclick="alertDeleteUp()"><img src="img/toucan_bot_img/trash.svg"></div>
+    <div class="wrapper">
+        <div class="wrapItem">
+            <div class="field">
+                <div class="reply message"><div><p>Тук-тук, рад вас видеть!</p></div></div>
+            </div>
+        </div>
+        <div class="inputMessage">
+            <div class="inputItem">
+                <div class="inputWrapper">
+                    <input class="botSender" onkeyup="key13(event)" type="text" placeholder="Ваше сообщение">
+                </div>
+                <div class="middle"></div>
+                <div class="buttonWrapper">
+                    <button class="botKey" onclick="sendMessage()"><img src="img/toucan_bot_img/paper_plane.svg"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Toucan bot-->
+    <script src="js/dynamics.js"></script>
     <!-- jquery plugins here-->
     <script src="js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
