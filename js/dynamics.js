@@ -148,6 +148,7 @@ function sendMessage() {
         dir5 = ['свидан', 'пока', 'до скорого', 'пасиб', 'прощай', 'встреч', 'благодар'];
         dir6 = ['дела', 'жизнь'];
         dir7 = ['связь', 'обратная связь', 'отзыв', 'связаться', 'номер телефона', 'контакты'];
+        dir8 = ['установить', 'установка', 'бот'];
         ifFirstMessage = false;
         for (item of dir1) {
             reply = 'Привет! Чем могу вам помочь?';
@@ -158,7 +159,7 @@ function sendMessage() {
             replyMessage(reply);
         };
         for (item of dir3) {
-            reply = 'Установка toucan.bot бесплатна, Вы можете заказать установку, возпользуясь формой ниже или написав нам на почту dmitriyhernov1@yandex.ru';
+            reply = 'Для того чтобы сказать сайт, вам необходимо заполнить форму, которая находится в конце страницы или связаться с нами через телефон или WhatsApp через кнопку "Контакты" в меню.' ;
             replyMessage(reply);
         };
         for (item of dir4) {
@@ -174,7 +175,11 @@ function sendMessage() {
             replyMessage(reply)
         };
         for (item of dir7) {
-            reply = 'Наши контакты доступны возле формы "обратной связи", будем рады вашему отклику.';
+            reply = 'Наши контакты: </br>Телефон: +7 913 854 89 60 E-mail: dmitriyhernov1@yandex.ru ';
+            replyMessage(reply);
+        };
+        for (item of dir8) {
+            reply = 'Установка toucan.bot бесплатна, Вы можете заказать установку, возпользуясь формой на сайте: giraffeweb.ru/toucanbot или написав нам на почту dmitriyhernov1@yandex.ru';
             replyMessage(reply);
         };
         sends = document.querySelectorAll('.message');
